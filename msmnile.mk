@@ -126,6 +126,9 @@ PRODUCT_PACKAGES += \
     libstdc++.vendor \
     vendor.qti.hardware.camera.device@1.0.vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor
+    
+PRODUCT_PACKAGES += \
+    libshim_megvii
 
 # Configstore
 PRODUCT_PACKAGES += \
