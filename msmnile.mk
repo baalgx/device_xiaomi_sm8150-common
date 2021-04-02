@@ -239,6 +239,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@4.1.vendor
 
+# Kernel
+PRODUCT_SET_DEBUGFS_RESTRICTIONS := true    
+
 # Lights
 PRODUCT_PACKAGES += \
     android.hardware.light-service.xiaomi
