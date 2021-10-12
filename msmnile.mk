@@ -444,7 +444,8 @@ PRODUCT_PACKAGES += \
     
 # Thermal HAL
 PRODUCT_PACKAGES += \
-    android.hardware.thermal@2.0-service.xiaomi_sm8150
+    android.hardware.thermal@2.0-service.xiaomi_sm8150 \
+    thermal_symlinks
 
 # USB
 PRODUCT_PACKAGES += \
