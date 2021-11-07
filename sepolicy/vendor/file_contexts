@@ -50,6 +50,9 @@
 # FOD
 /sys/devices/virtual/touch/tp_dev/fod_status                            u:object_r:vendor_sysfs_graphics:s0
 
+# HBM
+/sys/devices/platform/soc/soc:qcom,dsi-display-primary/hbm           u:object_r:vendor_sysfs_hbm:s0
+
 # Hexagon DSP-side executable needed for Halide operation
 # This is labeled as public_adsprpcd_file as it needs to be read by apps
 # (e.g. Google Camera App)
@@ -66,6 +69,9 @@
 
 # Lights
 /vendor/bin/hw/android\.hardware\.light-service\.xiaomi                 u:object_r:hal_light_default_exec:s0
+
+# Livedisplay
+/vendor/bin/hw/vendor\.lineage\.livedisplay@2\.1-service\.sm8150    u:object_r:hal_lineage_livedisplay_qti_exec:s0
 
 # Mlipay
 /vendor/bin/mlipayd@1\.1                                                u:object_r:hal_mlipay_default_exec:s0
