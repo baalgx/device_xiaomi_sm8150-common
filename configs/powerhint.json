@@ -910,6 +910,18 @@
       "Node": "CPUBigPlusClusterMaxFreq",
       "Duration": 3600000,
       "Value": "2534400"
+    },
+    {
+      "PowerHint": "Flipendo",
+      "Node": "CPUBigPlusClusterMaxFreq",
+      "Duration": 0,
+      "Value": "2016000"
+    },
+    {
+      "PowerHint": "Flipendo",
+      "Node": "CPUBigClusterMaxFreq",
+      "Duration": 0,
+      "Value": "2016000"
     }
   ]
 }
