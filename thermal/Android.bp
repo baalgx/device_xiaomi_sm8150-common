@@ -49,10 +49,10 @@ cc_binary {
 }
 
 sh_binary {
-  name: "xiaomi_cepheus_thermal_symlinks",
+  name: "xiaomi_sm8150_thermal_symlinks",
   src: "init.thermal.symlinks.sh",
   vendor: true,
   init_rc: [
-    "xiaomi_cepheus-thermal-symlinks.rc",
+    "xiaomi_sm8150-thermal-symlinks.rc",
   ],
 }
