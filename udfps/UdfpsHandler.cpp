@@ -9,24 +9,14 @@
 #include "UdfpsHandler.h"
 
 #include <android-base/logging.h>
-#include <android-base/unique_fd.h>
 #include <fcntl.h>
 #include <poll.h>
 #include <thread>
 #include <unistd.h>
-#include <thread>
 
 #define COMMAND_NIT 10
 #define PARAM_NIT_FOD 1
 #define PARAM_NIT_NONE 0
-
-// Touchfeature
-#define TOUCH_DEV_PATH "/dev/xiaomi-touch"
-#define TOUCH_UDFPS_ENABLE 10
-#define TOUCH_MAGIC 0x5400
-#define TOUCH_IOC_SETMODE TOUCH_MAGIC + 0
-#define UDFPS_STATUS_ON 1
-#define UDFPS_STATUS_OFF 0
 
 static const char* kFodUiPaths[] = {
         "/sys/devices/platform/soc/soc:qcom,dsi-display-primary/fod_ui",
@@ -61,7 +51,6 @@ class XiaomiMsmnileUdfpsHandler : public UdfpsHandler {
   public:
     void init(fingerprint_device_t *device) {
         mDevice = device;
-        touch_fd_ = android::base::unique_fd(open(TOUCH_DEV_PATH, O_RDWR));
 
         std::thread([this]() {
             int fodUiFd;
@@ -103,10 +92,6 @@ class XiaomiMsmnileUdfpsHandler : public UdfpsHandler {
                 mDevice->extCmd(mDevice, COMMAND_NIT, fodUi ? PARAM_NIT_FOD : PARAM_NIT_NONE);
                 if (fodStatusFd >= 0) {
                     write(fodStatusFd, fodUi ? "1" : "0", 1);
-                    
-                int arg[2] = {TOUCH_UDFPS_ENABLE,
-                              readBool(fodUiFd) ? UDFPS_STATUS_ON : UDFPS_STATUS_OFF};
-                ioctl(touch_fd_.get(), TOUCH_IOC_SETMODE, &arg);
                 }
             }
         }).detach();
@@ -121,7 +106,6 @@ class XiaomiMsmnileUdfpsHandler : public UdfpsHandler {
     }
   private:
     fingerprint_device_t *mDevice;
-    android::base::unique_fd touch_fd_;
 };
 
 static UdfpsHandler* create() {
